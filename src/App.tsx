@@ -4,8 +4,8 @@ import React from 'react';
 import Wizard from "./components/Wizard";
 import StepProps from "./types/StepProps";
 import WizardApi from "./utils/WizardApi";
-import Comp1 from "./wizardComponents/Comp1";
-import Comp2 from "./wizardComponents/Comp2";
+import Comp1 from "./demoComponents/Comp1";
+import Comp2 from "./demoComponents/Comp2";
 import DefaultSummaryStep from "./components/summary/DefaultSummaryStep";
 
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
             component: Comp1 as React.FC,
             props: {
                 text: 'write something to continue',
-                outputValue1: 'lo',
+                outputValue1: 'comp1',
             },
         },
         validate: (stateObj: any) => {
@@ -51,7 +51,7 @@ const App = () => {
             component: Comp2 as React.FC,
             props: {
                 text: 'write something2 to continue',
-                outputValue2: '',
+                outputValue2: 'comp2',
             }
         },
         validate: (stateObj: any) => {
@@ -93,7 +93,8 @@ const App = () => {
         return (
             <div>
                 Thank You!
-                Rendered nothing...
+                <br/>
+                Submitted nothing...
             </div>
         );
     }

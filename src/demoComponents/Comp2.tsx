@@ -1,30 +1,31 @@
 import React, {useState} from 'react';
 
-type Comp1Props = {
+type Comp2Props = {
     handleComponentStateChange: (stateObj: any) => void,
-    outputValue1: string,
+    outputValue2: string,
+    text: string,
 }
 
-const Comp1: React.FC<Comp1Props> = ({
+const Comp2: React.FC<Comp2Props> = ({
                                          handleComponentStateChange,
-                                         outputValue1,
-                                     }) => {
-    const [value, setValue] = useState(outputValue1 || '');
+                                         outputValue2,
+                                         text}) => {
+    const [value, setValue] = useState(outputValue2 || '');
 
     const setInputValue = (e: React.FormEvent<HTMLInputElement>) => {
         let v = e.currentTarget.value;
         setValue(v);
         handleComponentStateChange({
-            outputValue1: v
+            outputValue2: v
         });
     }
 
     return (
         <div>
             <input value={value} onChange={setInputValue}/>
-            <div>Comp1</div>
+            <div>{text}</div>
         </div>
     )
 }
 
-export default Comp1;
+export default Comp2;
