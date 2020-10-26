@@ -1,5 +1,7 @@
 import React from "react";
-import _ from 'lodash'
+import each from 'lodash/each'
+import assign from 'lodash/assign'
+import values from 'lodash/values'
 import StepProps from "../types/StepProps";
 
 import SummaryBeforeSubmission from "../components/summary/SummaryBeforeSubmission";
@@ -66,13 +68,13 @@ class WizardApi {
     processStepsVisibility(currentStepResponse: any) {
         let aggregatedState = {};
 
-        _.each(_.values(this._summaryObject), value => {
-            aggregatedState = _.assign(aggregatedState, value);
+        each(values(this._summaryObject), value => {
+            aggregatedState = assign(aggregatedState, value);
         });
 
-        aggregatedState = _.assign({aggregatedState}, currentStepResponse);
+        aggregatedState = assign({aggregatedState}, currentStepResponse);
 
-        _.each(this._steps, (step, index) => {
+        each(this._steps, (step, index) => {
             if(index > this._index) {
                 step.isVisible = !step.shouldHide(aggregatedState);
             }
@@ -91,7 +93,7 @@ class WizardApi {
      * After changing current step, cleanup all next steps from wizard state
      * */
     cleanUpSummaryObjFromStep() {
-        _.each(this._steps, (step: StepProps, index: number) => {
+        each(this._steps, (step: StepProps, index: number) => {
             if(index > this._index) {
                 delete this._summaryObject[step.id];
             }
@@ -99,17 +101,17 @@ class WizardApi {
     }
 
     get currentComponent(): StepComponentSettingsProps {
-        let currentStep = this.visibleSteps[this._index];
+        const currentStep = this.visibleSteps[this._index];
         return currentStep.componentSettings;
     }
 
     get components(): Array<StepComponentSettingsProps> {
-        let steps = Array<StepComponentSettingsProps>();
+        const steps = Array<StepComponentSettingsProps>();
         this.visibleSteps.forEach(step=> {
-            let currentStep = {
+            const currentStep = {
                 component: step.componentSettings.component,
                 props: Object.assign(step.componentSettings.props, this._overriddenProps[step.id]),
-            }
+            };
             steps.push(currentStep);
         })
 

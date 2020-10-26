@@ -2,11 +2,11 @@ import React from "react";
 import WizardStepIcon from "./WizardStepIcon";
 import WizardStepTitle from "./WizardStepTitle";
 
-interface IWizardSummaryStepProps {
+interface WizardSummaryStepProps {
     isActive: boolean,
 }
 
-const WizardSummaryStep: React.FC<IWizardSummaryStepProps> = ({isActive}) => {
+const WizardSummaryStep: React.FC<WizardSummaryStepProps> = ({isActive}) => {
     return <div className={'wizard-step'}>
         <WizardStepIcon icon={'fa fa-list-alt'} isValid={false} isActive={isActive}>
         </WizardStepIcon>

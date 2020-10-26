@@ -16,8 +16,8 @@ const WizardMainView: React.FC<WizardMainViewProps> = ({
                                                            isWizardSubmitted,
                                                            postSubmissionComponent}) => {
 
-    let activeComp = components[activeStep];
-    let ActiveComponent = activeComp.component;
+    const activeComp = components[activeStep];
+    const ActiveComponent = activeComp.component;
 
     return (
         <div className={'wizard-main-view'}>
@@ -33,7 +33,8 @@ const WizardMainView: React.FC<WizardMainViewProps> = ({
         </div>
     )
 
-    /*let ActiveComponent = component.component;
+    /*
+    const ActiveComponent = component.component;
 
     return (
         <div className={'wizard-main-view'}>

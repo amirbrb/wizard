@@ -12,7 +12,7 @@ const Comp1: React.FC<Comp1Props> = ({
     const [value, setValue] = useState(outputValue1 || '');
 
     const setInputValue = (e: React.FormEvent<HTMLInputElement>) => {
-        let v = e.currentTarget.value;
+        const v = e.currentTarget.value;
         setValue(v);
         handleComponentStateChange({
             outputValue1: v

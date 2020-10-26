@@ -1,11 +1,11 @@
 import React from  'react';
 
-interface IStepSeparatorProps {
+interface StepSeparatorProps {
     isActive:boolean,
     isValid: boolean,
 }
 
-const WizardStepSeparator: React.FC<IStepSeparatorProps> = ({
+const WizardStepSeparator: React.FC<StepSeparatorProps> = ({
                                                                 isActive,
                                                                 isValid}) => {
     return (

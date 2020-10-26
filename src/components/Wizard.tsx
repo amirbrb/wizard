@@ -23,7 +23,7 @@ const Wizard: React.FC<WizardProps> = ({api}) => {
     const [isSubmitted, setIsSubmitted] = useState(api.submitted);
 
     const handleForwardNavigation = () => {
-        let newActiveStep = activeStepIndex + 1;
+        const newActiveStep = activeStepIndex + 1;
 
         //move forward with current response
         let currentResponse = getCurrentStepResponse();
@@ -31,14 +31,14 @@ const Wizard: React.FC<WizardProps> = ({api}) => {
 
         //get current step's (after forward) response and validate
         currentResponse = getCurrentStepResponse();
-        let isValid = api.lastStepIndex === newActiveStep ||
+        const isValid = api.lastStepIndex === newActiveStep ||
             api.currentStepSettings.validate(currentResponse);
 
         setIsValidStep(isValid);
         setActiveStepIndex(newActiveStep);
         setActiveStepId(api.currentStepSettings.id);
 
-        let indexOfStep = visitedSteps.indexOf(activeStepId);
+        const indexOfStep = visitedSteps.indexOf(activeStepId);
         indexOfStep === -1 && visitedSteps.push(activeStepId);
         setVisitedSteps(visitedSteps.map(s=> s));
     }
@@ -50,7 +50,7 @@ const Wizard: React.FC<WizardProps> = ({api}) => {
         setActiveStepIndex(activeStepIndex - 1);
         setActiveStepId(api.currentStepSettings.id);
 
-        let indexOfStep = visitedSteps.indexOf(activeStepId);
+        const indexOfStep = visitedSteps.indexOf(activeStepId);
         indexOfStep > -1 && visitedSteps.splice(indexOfStep, 1);
         setVisitedSteps(visitedSteps.map(s=> s));
     }
@@ -59,7 +59,7 @@ const Wizard: React.FC<WizardProps> = ({api}) => {
         api.handleComponentStateChange(stateObj);
         setVisibleSteps(api.visibleSteps);
 
-        let validationResponse = api.currentStepSettings.validate(stateObj);
+        const validationResponse = api.currentStepSettings.validate(stateObj);
         setIsValidStep(validationResponse);
         setIsStepValidationFailed(!validationResponse);
     }
@@ -71,7 +71,7 @@ const Wizard: React.FC<WizardProps> = ({api}) => {
     const handleSubmit = (stateObj: any) => {
         api.onSubmit(stateObj);
         setIsSubmitted(api.submitted);
-        let indexOfStep = visitedSteps.indexOf(activeStepId);
+        const indexOfStep = visitedSteps.indexOf(activeStepId);
         indexOfStep === -1 && visitedSteps.push(activeStepId);
         setVisitedSteps(visitedSteps.map(s=> s));
         setIsValidStep(true);
@@ -86,7 +86,7 @@ const Wizard: React.FC<WizardProps> = ({api}) => {
 
     //Hide next steps when invoking the current component ->
     //for example - the first step's props should hide the next step
-    let currentStepResponse = getCurrentStepResponse();
+    const currentStepResponse = getCurrentStepResponse();
     api.processStepsVisibility(currentStepResponse);
 
     return (

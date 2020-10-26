@@ -4,14 +4,14 @@ import WizardStepMessage from "./WizardStepMessage";
 import WizardStepIcon from "./WizardStepIcon";
 import WizardStepTitle from "./WizardStepTitle";
 
-interface IWizardStepProps extends StepProps {
+interface WizardStepProps extends StepProps {
     isActive: boolean,
     isStepValidationError: boolean,
     isValid: boolean,
     onClick: () => void,
 }
 
-const WizardStep: React.FC<IWizardStepProps> = ({
+const WizardStep: React.FC<WizardStepProps> = ({
                                                     text,
                                                     icon,
                                                     messageProps,

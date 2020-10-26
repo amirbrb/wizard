@@ -1,12 +1,12 @@
 import React from "react";
 
-interface ISummaryStepProps {
+interface SummaryStepProps {
     icon: string,
     title: string,
     summaryObj: any,
     renderSummaryObj: (stateObj: any) => JSX.Element,
 }
-const SummaryStep: React.FC<ISummaryStepProps> = ({icon, title, summaryObj, renderSummaryObj}) => {
+const SummaryStep: React.FC<SummaryStepProps> = ({icon, title, summaryObj, renderSummaryObj}) => {
     return <div className={'wizard-summary-step'}>
         <div className={'wizard-step-icon'}>
             <i className={`fa ${icon}`}>
