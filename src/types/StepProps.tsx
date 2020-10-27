@@ -6,13 +6,11 @@ type StepProps = {
     id: string,
     text: string,
     icon: string,
-    messageProps: StepMessageProps,
-    componentSettings: StepComponentSettingsProps,
-    validate: (stateObj: any) => boolean,
-    shouldHide: (stateObj: any) => boolean,
-    getResponseObj: (stateObj: any) => any,
+    message: string,
+    renderView: () => JSX.Element,
+    validate: () => boolean,
     isVisible: boolean,
-    renderSummaryObj: (stateObj: any) => JSX.Element,
+    summary: () => JSX.Element,
 }
 
 export default StepProps;

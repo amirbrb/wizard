@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import each from 'lodash/each'
 import assign from 'lodash/assign'
@@ -62,9 +63,9 @@ class WizardApi {
         this._index++;
     }
 
-    /**
+    /!**
      * Process which steps should be visible in the wizard, according to the current step response
-     * */
+     * *!/
     processStepsVisibility(currentStepResponse: any) {
         let aggregatedState = {};
 
@@ -81,17 +82,17 @@ class WizardApi {
         })
     }
 
-    /**
+    /!**
      * Update current component properties -
      * will be used to re-create it when traversing back and forth in the wizard
-     * */
+     * *!/
     setStepProps(props: any) {
         this._overriddenProps[this.currentStepSettings.id] = props;
     }
 
-    /**
+    /!**
      * After changing current step, cleanup all next steps from wizard state
-     * */
+     * *!/
     cleanUpSummaryObjFromStep() {
         each(this._steps, (step: StepProps, index: number) => {
             if(index > this._index) {
@@ -142,3 +143,7 @@ class WizardApi {
 }
 
 export default WizardApi;
+*/
+
+
+export default {}

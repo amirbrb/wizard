@@ -14,7 +14,7 @@ interface WizardStepProps extends StepProps {
 const WizardStep: React.FC<WizardStepProps> = ({
                                                     text,
                                                     icon,
-                                                    messageProps,
+                                                    message,
                                                     isActive,
                                                     isStepValidationError,
                                                     isValid,
@@ -27,7 +27,7 @@ const WizardStep: React.FC<WizardStepProps> = ({
             </WizardStepIcon>
             <WizardStepTitle title={text}>
             </WizardStepTitle>
-            <WizardStepMessage showValidationError={isStepValidationError && isActive} message={messageProps.message}>
+            <WizardStepMessage showValidationError={isStepValidationError && isActive} message={message}>
             </WizardStepMessage>
         </div>
     )

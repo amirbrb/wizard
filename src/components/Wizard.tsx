@@ -1,120 +1,60 @@
-import React, {useState} from 'react';
+import React from 'react';
 import WizardHeader from "./structure/WizardHeader";
 import WizardMainView from "./structure/WizardMainView";
 
-import WizardApi from '../utils/WizardApi'
 import WizardFooter from "./structure/WizardFooter";
+import StepProps from "../types/StepProps";
 
 type WizardProps = {
-    api: WizardApi,
+    onCancel: () => void,
+    onSubmit: () => void,
+    onBack: () => void,
+    onNext: () => void,
+    onStepClick: (index: number) => void,
+    steps: StepProps[],
+    activeView: JSX.Element,
+    isValidStep: boolean,
+    isDirtyStep: boolean,
+    isWizardSubmitted: boolean,
+    visitedSteps: string[],
+    currentIndex: number,
 }
 
-const Wizard: React.FC<WizardProps> = ({api}) => {
-    const getIsValidStep = () => {
-        return api.currentStepSettings.validate(api.currentStepSettings.componentSettings.props);
-    }
-
-    const [activeStepIndex, setActiveStepIndex] = useState(0);
-    const [activeStepId, setActiveStepId] = useState(api.currentStepSettings.id);
-    const [isValidStep, setIsValidStep] = useState(getIsValidStep);
-    const [isStepValidationFailed, setIsStepValidationFailed] = useState(false);
-    const [visitedSteps, setVisitedSteps] = useState(Array<string>());
-    const [visibleSteps, setVisibleSteps] = useState(api.visibleSteps);
-    const [isSubmitted, setIsSubmitted] = useState(api.submitted);
-
-    const handleForwardNavigation = () => {
-        const newActiveStep = activeStepIndex + 1;
-
-        //move forward with current response
-        let currentResponse = getCurrentStepResponse();
-        api.next(currentResponse);
-
-        //get current step's (after forward) response and validate
-        currentResponse = getCurrentStepResponse();
-        const isValid = api.lastStepIndex === newActiveStep ||
-            api.currentStepSettings.validate(currentResponse);
-
-        setIsValidStep(isValid);
-        setActiveStepIndex(newActiveStep);
-        setActiveStepId(api.currentStepSettings.id);
-
-        const indexOfStep = visitedSteps.indexOf(activeStepId);
-        indexOfStep === -1 && visitedSteps.push(activeStepId);
-        setVisitedSteps(visitedSteps.map(s=> s));
-    }
-
-    const handleBackwardNavigation = () => {
-        api.back();
-
-        setIsValidStep(true);
-        setActiveStepIndex(activeStepIndex - 1);
-        setActiveStepId(api.currentStepSettings.id);
-
-        const indexOfStep = visitedSteps.indexOf(activeStepId);
-        indexOfStep > -1 && visitedSteps.splice(indexOfStep, 1);
-        setVisitedSteps(visitedSteps.map(s=> s));
-    }
-
-    const handleComponentStateChange = (stateObj: any) => {
-        api.handleComponentStateChange(stateObj);
-        setVisibleSteps(api.visibleSteps);
-
-        const validationResponse = api.currentStepSettings.validate(stateObj);
-        setIsValidStep(validationResponse);
-        setIsStepValidationFailed(!validationResponse);
-    }
-
-    const handleStepClick = (stepIndex: number) => {
-
-    }
-
-    const handleSubmit = (stateObj: any) => {
-        api.onSubmit(stateObj);
-        setIsSubmitted(api.submitted);
-        const indexOfStep = visitedSteps.indexOf(activeStepId);
-        indexOfStep === -1 && visitedSteps.push(activeStepId);
-        setVisitedSteps(visitedSteps.map(s=> s));
-        setIsValidStep(true);
-    }
-
-    /**
-     * Helper function to get current step's response
-     * */
-    const getCurrentStepResponse = () => {
-        return api.currentStepSettings.getResponseObj(api.currentStepSettings.componentSettings.props) || null;
-    }
-
-    //Hide next steps when invoking the current component ->
-    //for example - the first step's props should hide the next step
-    const currentStepResponse = getCurrentStepResponse();
-    api.processStepsVisibility(currentStepResponse);
-
+const Wizard: React.FC<WizardProps> = ({
+                                           onCancel,
+                                           onSubmit,
+                                           onBack,
+                                           onNext,
+                                           onStepClick,
+                                           steps,
+                                           activeView,
+                                           isValidStep,
+                                           isDirtyStep,
+                                           isWizardSubmitted,
+                                           visitedSteps,
+                                           currentIndex,
+                                        }) => {
     return (
         <div className={'wizard-wrapper'}>
-            <WizardHeader lastStep={api.lastStepIndex}
-                          steps={visibleSteps}
+            <WizardHeader steps={steps}
                           visitedSteps={visitedSteps}
-                          isStepValidationFailed={isStepValidationFailed}
-                          onClick={handleStepClick}
-                          activeStep={activeStepIndex}>
+                          isStepValidationFailed={isDirtyStep ? !isValidStep : false}
+                          onClick={onStepClick}
+                          activeStep={currentIndex}>
             </WizardHeader>
-            <WizardMainView handleComponentStateChange={handleComponentStateChange}
-                            activeStep={activeStepIndex}
-                            isWizardSubmitted={isSubmitted}
-                            postSubmissionComponent={api.postSubmissionView}
-                            components={api.components}>
+            <WizardMainView currentView={activeView}>
             </WizardMainView>
-            <WizardFooter isInitialStep={activeStepIndex === 0}
-                          isLastStep={activeStepIndex === api.lastStepIndex}
-                          isWizardSubmitted={isSubmitted}
+            <WizardFooter isInitialStep={currentIndex === 0}
+                          isLastStep={currentIndex === steps.length - 1}
+                          isWizardSubmitted={isWizardSubmitted}
                           canProceed={isValidStep}
-                          onCancel={api.onCancel}
-                          onSubmit={handleSubmit}
-                          onNext={handleForwardNavigation}
-                          onBack={handleBackwardNavigation}>
+                          onCancel={onCancel}
+                          onSubmit={onSubmit}
+                          onNext={onNext}
+                          onBack={onBack}>
             </WizardFooter>
         </div>
-    )
+    );
 }
 
 

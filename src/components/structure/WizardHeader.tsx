@@ -8,7 +8,6 @@ type WizardHeaderProps = {
     activeStep: number,
     isStepValidationFailed: boolean,
     visitedSteps: Array<string>,
-    lastStep: number,
     onClick: (stepIndex: number) => void,
 }
 
@@ -16,14 +15,13 @@ const WizardHeader: React.FC<WizardHeaderProps> = ({
                                                        steps,
                                                        activeStep,
                                                        visitedSteps,
-                                                       lastStep,
                                                        isStepValidationFailed,
                                                        onClick}) => {
     return (
         <div className={'wizard-header'}>
             {
                 steps.map((stepConfig, index)=> {
-                    return index < lastStep ? (
+                    return index < steps.length - 1 ? (
                         <React.Fragment key={index}>
                             <WizardStep
                                         onClick={() => onClick.call(null, index)}
