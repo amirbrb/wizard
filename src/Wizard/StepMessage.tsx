@@ -7,7 +7,7 @@ interface StepMessageValidationProps extends StepMessageProps{
 
 const StepMessage: React.FC<StepMessageValidationProps> = ({
                                                             message,}) => {
-    return (message && <div className={'step-validation-error'}>{message}</div>) || <div></div>
+    return (message && <div className={'step-validation-error'}>{message}</div>) || <div/>
 }
 
 export default StepMessage;

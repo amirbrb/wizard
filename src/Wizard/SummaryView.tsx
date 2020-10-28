@@ -14,21 +14,18 @@ const SummaryView: React.FC<defaultSummaryViewProps> = ({summarySteps}) => {
         <div className={'wizard-summary'}>
             {
                 map(summarySteps, (step, index)=> {
+                    const SummaryAggregation = () => <SummaryAggregationStep
+                        icon={step.icon}
+                        title={step.text}
+                        summary={step.summaryDisplay()}/>;
+
                     return index < summarySteps.length - 1 ?
-                        <>
-                            <SummaryAggregationStep
-                                icon={step.icon}
-                                title={step.text}
-                                summary={step.summary()}>
-                            </SummaryAggregationStep>
-                            <SummaryStepSeparator></SummaryStepSeparator>
-                        </>
-                        :
-                        <SummaryAggregationStep
-                            icon={step.icon}
-                            title={step.text}
-                            summary={step.summary()}>
-                        </SummaryAggregationStep>
+                        <React.Fragment key={index}>
+                            <SummaryAggregation/>
+                            <SummaryStepSeparator/>
+                        </React.Fragment>
+                        :<SummaryAggregation key={index}/>
+
                 })
             }
         </div>

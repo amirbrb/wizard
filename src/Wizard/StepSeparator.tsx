@@ -2,15 +2,14 @@ import React from  'react';
 
 interface StepSeparatorProps {
     isActive:boolean,
-    isValid: boolean,
+    isVisited: boolean,
 }
 
 const StepSeparator: React.FC<StepSeparatorProps> = ({
                                                                 isActive,
-                                                                isValid}) => {
+                                                                isVisited}) => {
     return (
-        <div className={`wizard-step-separator ${ isActive ? 'active': ''} ${ isValid ? 'valid' : ''}`}>
-        </div>
+        <div className={`wizard-step-separator ${ isActive ? 'active': ''} ${ isVisited ? 'visited' : ''}`}/>
     )
 }
 

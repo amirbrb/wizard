@@ -1,6 +1,6 @@
 export interface StepIconProps {
     icon: string,
-    isValid: boolean,
+    isVisited: boolean,
     isActive: boolean,
 }
 
@@ -16,5 +16,5 @@ export interface StepProps {
     renderView: () => JSX.Element,
     validate: () => boolean,
     isVisible: () => boolean,
-    summary: () => JSX.Element,
+    summaryDisplay: () => JSX.Element,
 }

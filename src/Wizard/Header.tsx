@@ -20,26 +20,24 @@ const Header: React.FC<HeaderProps> = ({
         <div className={'wizard-header'}>
             {
                 map(steps, (stepConfig, index)=> {
-                    const isValid = visitedSteps.includes(stepConfig.id);
+                    const isVisited = visitedSteps.includes(stepConfig.id);
                     const isActive = stepConfig.id === activeStepId;
+
+                    const StepView = () => <Step onClick={() => onClick(index)}
+                                                 isActive={isActive}
+                                                 isVisited={isVisited}
+                                                 {...stepConfig}
+                                                 key={index}/>;
 
                     return index < steps.length - 1 ? (
                         <React.Fragment key={index}>
-                            <Step onClick={() => onClick(index)}
-                                  isActive={isActive}
-                                  isValid={isValid}
-                                  {...stepConfig}
-                                  key={index}/>
-                            <StepSeparator isValid={isValid}
+                            <StepView/>
+                            <StepSeparator isVisited={isVisited}
                                            isActive={isActive}>
                             </StepSeparator>
                         </React.Fragment>
                     ) : (
-                        <Step onClick={() => onClick(index)}
-                              isActive={isActive}
-                              isValid={isValid}
-                              {...stepConfig}
-                              key={index}/>
+                        <StepView key={index}/>
                     )
                 })
             }

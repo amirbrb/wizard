@@ -6,7 +6,7 @@ import {StepProps} from "./types";
 
 interface HeaderStepProps extends StepProps {
     isActive: boolean,
-    isValid: boolean,
+    isVisited: boolean,
     onClick: () => void,
 }
 
@@ -15,13 +15,13 @@ const Step: React.FC<HeaderStepProps> = ({
                                                     icon,
                                                     message,
                                                     isActive,
-                                                    isValid,
+                                                    isVisited,
                                                     onClick}) => {
     return (
         <div
             onClick={onClick}
-            className={[`wizard-step`, isActive ? 'active' : '', isValid ? 'valid' : ''].filter(Boolean).join(' ')}>
-            <StepIcon icon={icon} isValid={isValid} isActive={isActive}>
+            className={[`wizard-step`, isActive ? 'active' : '', isVisited ? 'visited' : ''].filter(Boolean).join(' ')}>
+            <StepIcon icon={icon} isVisited={isVisited} isActive={isActive}>
             </StepIcon>
             <StepTitle title={text}>
             </StepTitle>

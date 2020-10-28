@@ -36,9 +36,9 @@
   background: #6E84A4;
 }
 
-.wizard-step.valid .wizard-step-icon {
+.wizard-step.visited .wizard-step-icon {
   color: white;
-  background: darkblue !important;
+  background: #2d7be5;
 }
 
 .wizard-step-separator {
@@ -57,8 +57,8 @@
   background: #6E84A4;
 }
 
-.wizard-step-separator.valid {
-  background: darkblue !important;
+.wizard-step-separator.visited {
+  background: #2d7be5;
 }
 
 .step-validation-error {
@@ -68,6 +68,7 @@
 .wizard-main-view {
   display: flex;
   justify-content: center;
+  height: 30em;
 }
 
 .wizard-footer {
@@ -112,7 +113,7 @@
 
 .summary-step-separator {
   width: 0.2em;
-  background: darkblue;
+  background: #6E84A4;
   display: flex;
   flex-grow: 1;
   height: 2em;

@@ -12,7 +12,10 @@ const useWizard = (steps: StepProps[], cancel: () => void, submit: () => void,) 
     const activeView = visibleSteps[currentIndex].renderView();
     const isInitialStep = currentIndex === 0;
     const isFinalStep = currentIndex === visibleSteps.length - 1;
-    const activeStepId = visibleSteps[currentIndex].id;
+
+    const activeStepId = isWizardSubmitted ?
+        '' :
+        visibleSteps[currentIndex].id;
 
     const next = () => {
         setVisitedSteps([...visitedSteps, visibleSteps[currentIndex].id]);
@@ -38,6 +41,7 @@ const useWizard = (steps: StepProps[], cancel: () => void, submit: () => void,) 
     const onSubmit = () => {
         submit();
         setIsWizardSubmitted(true);
+        setVisitedSteps([...visitedSteps, visibleSteps[currentIndex].id]);
     }
 
     return {

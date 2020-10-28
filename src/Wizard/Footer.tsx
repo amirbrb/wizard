@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({
                                                        canProceed,
                                                        isWizardSubmitted}) => {
 
-    const CancelButton = () => <Button isDisabled={false} onClick={onCancel} className={`btn btn-danger wizard-button`}>Cancel</Button>;
+    const CancelButton = () => <Button isDisabled={false} onClick={onCancel} className={`btn btn-light wizard-button`}>Cancel</Button>;
     const BackButton = () => <Button isDisabled={false} onClick={onBack} className={`btn btn-primary wizard-button`}>Back</Button>;
     const NextButton = () => <Button isDisabled={!canProceed} onClick={onNext} className={`btn btn-primary wizard-button`}>Next</Button>;
     const SubmitButton = () => <Button isDisabled={isWizardSubmitted} onClick={onSubmit} className={`btn btn-success wizard-button`}>Submit</Button>;

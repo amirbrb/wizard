@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 
-type Comp1Props = {
+type Comp2Props = {
     outputValue: string | undefined,
     text: string,
     onValueChange: (value: string) => void
 }
 
-const Comp1: React.FC<Comp1Props> = ({
+const DemoComp2: React.FC<Comp2Props> = ({
                                          outputValue,
                                          text,
                                          onValueChange,
@@ -28,4 +28,4 @@ const Comp1: React.FC<Comp1Props> = ({
     )
 }
 
-export default Comp1;
+export default DemoComp2;
