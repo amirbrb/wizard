@@ -1,45 +1,45 @@
 import React from "react";
 import Step from "./Step";
 import StepSeparator from "./StepSeparator";
-import {StepProps} from "../Wizard/types";
+import {StepProps} from "./types";
+import map from 'lodash/map'
 
 type HeaderProps = {
     steps: StepProps[],
-    activeStep: number,
-    isStepValidationFailed: boolean,
+    activeStepId: string,
     visitedSteps: Array<string>,
     onClick: (stepIndex: number) => void,
 }
 
 const Header: React.FC<HeaderProps> = ({
                                                        steps,
-                                                       activeStep,
+                                                       activeStepId,
                                                        visitedSteps,
-                                                       isStepValidationFailed,
                                                        onClick}) => {
     return (
         <div className={'wizard-header'}>
             {
-                steps.map((stepConfig, index)=> {
+                map(steps, (stepConfig, index)=> {
+                    const isValid = visitedSteps.includes(stepConfig.id);
+                    const isActive = stepConfig.id === activeStepId;
+
                     return index < steps.length - 1 ? (
                         <React.Fragment key={index}>
                             <Step onClick={() => onClick(index)}
-                                  isActive={index === activeStep}
-                                  isValid={visitedSteps.includes(stepConfig.id)}
-                                  {...stepConfig}>
-                            </Step>
-                            <StepSeparator
-                                                 isValid={visitedSteps.includes(stepConfig.id)}
-                                                 isActive={index === activeStep}>
+                                  isActive={isActive}
+                                  isValid={isValid}
+                                  {...stepConfig}
+                                  key={index}/>
+                            <StepSeparator isValid={isValid}
+                                           isActive={isActive}>
                             </StepSeparator>
                         </React.Fragment>
                     ) : (
-                        <Step key={index}
-                              onClick={() => onClick.call(null, index)}
-                              isActive={index === activeStep}
-                              isValid={visitedSteps.includes(stepConfig.id)}
-                              {...stepConfig}>
-                        </Step>
+                        <Step onClick={() => onClick(index)}
+                              isActive={isActive}
+                              isValid={isValid}
+                              {...stepConfig}
+                              key={index}/>
                     )
                 })
             }

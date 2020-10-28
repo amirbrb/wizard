@@ -1,5 +1,5 @@
 import React from 'react';
-import {StepIconProps} from "../Wizard/types";
+import {StepIconProps} from "./types";
 
 const StepIcon: React.FC<StepIconProps> = ({icon, isValid, isActive}) => {
     return (

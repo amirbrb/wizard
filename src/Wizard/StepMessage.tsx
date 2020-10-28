@@ -1,5 +1,5 @@
 import React from 'react';
-import {StepMessageProps} from "../Wizard/types";
+import {StepMessageProps} from "./types";
 
 interface StepMessageValidationProps extends StepMessageProps{
     message: string,

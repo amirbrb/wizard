@@ -9,8 +9,8 @@ import SummaryView from "./Wizard/SummaryView";
 import {StepProps} from "./Wizard/types";
 
 const App = () => {
-    const [comp1Value, setComp1Value] = useState<undefined | string>(undefined);
-    const [comp2Value, setComp2Value] = useState<undefined | string>(undefined);
+    const [comp1Value, setComp1Value] = useState<string>();
+    const [comp2Value, setComp2Value] = useState<string>();
 
     const stepsConfig = Array<StepProps>(
         {
@@ -39,7 +39,7 @@ const App = () => {
         },
         {
             id: 'preSummary',
-            icon: 'fa-map',
+            icon: 'fa-align-justify',
             text: 'Summary',
             message: '',
             renderView: () => {
@@ -70,7 +70,7 @@ const App = () => {
 
     const postSubmitView = () => {
         return (
-            <div>Thanks, submitted <b>{comp1Value} - {comp2Value}</b></div>
+            <div>Thanks, submitted <b>{[comp1Value, comp2Value].join("-")}</b></div>
         )
     };
 

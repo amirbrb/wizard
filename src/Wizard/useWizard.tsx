@@ -1,4 +1,4 @@
-import {StepProps} from "../Wizard/types";
+import {StepProps} from "./types";
 import {useState} from "react";
 import filter from "lodash/filter";
 
@@ -10,6 +10,9 @@ const useWizard = (steps: StepProps[], cancel: () => void, submit: () => void,) 
     const visibleSteps = filter(steps, step=> step.isVisible());
     const isValid = visibleSteps[currentIndex].validate();
     const activeView = visibleSteps[currentIndex].renderView();
+    const isInitialStep = currentIndex === 0;
+    const isFinalStep = currentIndex === visibleSteps.length - 1;
+    const activeStepId = visibleSteps[currentIndex].id;
 
     const next = () => {
         setVisitedSteps([...visitedSteps, visibleSteps[currentIndex].id]);
@@ -38,13 +41,15 @@ const useWizard = (steps: StepProps[], cancel: () => void, submit: () => void,) 
     }
 
     return {
-        currentIndex,
         setCurrentIndex,
         isValid,
         isWizardSubmitted,
         activeView,
         visibleSteps,
         visitedSteps,
+        isInitialStep,
+        isFinalStep,
+        activeStepId,
         next,
         back,
         stepClick,

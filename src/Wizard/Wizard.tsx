@@ -3,23 +3,8 @@ import Header from "./Header";
 import MainView from "./MainView";
 
 import Footer from "./Footer";
-import {StepProps} from "../Wizard/types";
+import {StepProps} from "./types";
 import useWizard from "./useWizard";
-
-/*type WizardProps = {
-    onCancel: () => void,
-    onSubmit: () => void,
-    onBack: () => void,
-    onNext: () => void,
-    onStepClick: (index: number) => void,
-    steps: StepProps[],
-    activeView: JSX.Element,
-    isValidStep: boolean,
-    isDirtyStep: boolean,
-    isWizardSubmitted: boolean,
-    visitedSteps: string[],
-    currentIndex: number,
-}*/
 
 type WizardProps = {
     steps: StepProps[],
@@ -37,9 +22,11 @@ const Wizard: React.FC<WizardProps> = ({
 
     const {
         visibleSteps,
-        currentIndex,
         isValid,
         isWizardSubmitted,
+        isFinalStep,
+        isInitialStep,
+        activeStepId,
         visitedSteps,
         activeView,
         stepClick,
@@ -52,14 +39,13 @@ const Wizard: React.FC<WizardProps> = ({
         <div className={'wizard-wrapper'}>
             <Header steps={visibleSteps}
                     visitedSteps={visitedSteps}
-                    isStepValidationFailed={!isValid}
                     onClick={stepClick}
-                    activeStep={currentIndex}>
+                    activeStepId={activeStepId}>
             </Header>
             <MainView currentView={isWizardSubmitted ? postSubmitView : activeView}>
             </MainView>
-            <Footer isInitialStep={currentIndex === 0}
-                    isLastStep={currentIndex === steps.length - 1}
+            <Footer isInitialStep={isInitialStep}
+                    isLastStep={isFinalStep}
                     isWizardSubmitted={isWizardSubmitted}
                     canProceed={isValid}
                     onCancel={cancel}

@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.162"
+    "@types/lodash": "^4.14.162",
+    "prettier": "^2.1.2"
   }
 }
