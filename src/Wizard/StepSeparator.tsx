@@ -5,7 +5,7 @@ interface StepSeparatorProps {
     isValid: boolean,
 }
 
-const WizardStepSeparator: React.FC<StepSeparatorProps> = ({
+const StepSeparator: React.FC<StepSeparatorProps> = ({
                                                                 isActive,
                                                                 isValid}) => {
     return (
@@ -14,4 +14,4 @@ const WizardStepSeparator: React.FC<StepSeparatorProps> = ({
     )
 }
 
-export default WizardStepSeparator;
+export default StepSeparator;

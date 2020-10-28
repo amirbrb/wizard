@@ -1,10 +1,10 @@
 import React from "react";
 
-type WizardMainViewProps = {
+type MainViewProps = {
     currentView: JSX.Element,
 }
 
-const WizardMainView: React.FC<WizardMainViewProps> = ({currentView}) => {
+const MainView: React.FC<MainViewProps> = ({currentView}) => {
     return (
         <div className={'wizard-main-view'}>
             {
@@ -14,4 +14,4 @@ const WizardMainView: React.FC<WizardMainViewProps> = ({currentView}) => {
     )
 }
 
-export  default WizardMainView;
+export  default MainView;

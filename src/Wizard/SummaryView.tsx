@@ -1,37 +1,38 @@
 import React from "react";
-import StepProps from "../../types/StepProps";
+import {StepProps} from "../Wizard/types";
 import map from "lodash/map";
-import SummaryStep from "./SummaryStep";
+import SummaryAggregationStep from "./SummaryAggregationStep";
 import SummaryStepSeparator from "./SummaryStepSeperator";
 
 type defaultSummaryViewProps = {
     summarySteps: StepProps[],
 }
 
-const DefaultSummaryView: React.FC<defaultSummaryViewProps> = ({summarySteps}) => {
+const SummaryView: React.FC<defaultSummaryViewProps> = ({summarySteps}) => {
     return (
         <div className={'wizard-summary'}>
             {
                 map(summarySteps, (step, index)=> {
                     return index < summarySteps.length - 1 ?
                         <React.Fragment key={index}>
-                            <SummaryStep
+                            <SummaryAggregationStep
                                 icon={step.icon}
                                 title={step.text}
                                 summary={step.summary()}>
-                            </SummaryStep>
+                            </SummaryAggregationStep>
                             <SummaryStepSeparator></SummaryStepSeparator>
                         </React.Fragment>
                         :
-                        <SummaryStep
+                        <SummaryAggregationStep
+                            key={index}
                             icon={step.icon}
                             title={step.text}
                             summary={step.summary()}>
-                        </SummaryStep>
+                        </SummaryAggregationStep>
                 })
             }
         </div>
     )
 }
 
-export default DefaultSummaryView;
+export default SummaryView;

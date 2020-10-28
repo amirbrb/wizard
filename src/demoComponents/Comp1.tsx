@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 type Comp1Props = {
-    outputValue: string,
+    outputValue: string | undefined,
     text: string,
     onValueChange: (value: string) => void
 }

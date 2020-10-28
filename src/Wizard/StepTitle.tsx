@@ -4,7 +4,7 @@ type StepTitleProps = {
     title: string,
 }
 
-const WizardStepTitle: React.FC<StepTitleProps> = ({title}) => {
+const StepTitle: React.FC<StepTitleProps> = ({title}) => {
     return (
         <div className={'wizard-step-title'}>
             {title}
@@ -12,4 +12,4 @@ const WizardStepTitle: React.FC<StepTitleProps> = ({title}) => {
     )
 }
 
-export default WizardStepTitle;
+export default StepTitle;

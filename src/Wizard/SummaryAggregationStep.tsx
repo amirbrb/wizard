@@ -5,7 +5,7 @@ interface SummaryStepProps {
     title: string,
     summary: JSX.Element,
 }
-const SummaryStep: React.FC<SummaryStepProps> = ({
+const SummaryAggregationStep: React.FC<SummaryStepProps> = ({
                                                      icon,
                                                      title,
                                                      summary}) => {
@@ -21,4 +21,4 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
     </div>
 }
 
-export default SummaryStep;
+export default SummaryAggregationStep;
