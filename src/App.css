@@ -1,6 +1,4 @@
 @import "//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
-@import "//stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
-
 
 .wizard-wrapper {
   display: flex;
@@ -82,10 +80,34 @@
 
 .wizard-button {
   margin: 2em;
+  height: 3em;
+  padding: .5em;
+  cursor: pointer;
+  min-width: 5em;
 }
 
 .wizard-button.hidden {
   display: none;
+}
+
+.wizard-button:disabled {
+  opacity: 50%;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  color: #6E84A4;
+  background: white;
+}
+
+.prev-next-button {
+  color: white;
+  background: #2d7be5;
+}
+
+.submit-button {
+  color: white;
+  background: forestgreen;
 }
 
 .wizard-summary-step {

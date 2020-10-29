@@ -3,7 +3,7 @@ import React from "react";
 interface SummaryStepProps {
     icon: string,
     title: string,
-    summary: JSX.Element,
+    summary: React.ReactNode,
 }
 const SummaryAggregationStep: React.FC<SummaryStepProps> = ({
                                                      icon,

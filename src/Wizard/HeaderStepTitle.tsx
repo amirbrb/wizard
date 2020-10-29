@@ -1,10 +1,10 @@
 import React from 'react';
 
-type StepTitleProps = {
+type HeaderStepTitleProps = {
     title: string,
 }
 
-const StepTitle: React.FC<StepTitleProps> = ({title}) => {
+const HeaderStepTitle: React.FC<HeaderStepTitleProps> = ({title}) => {
     return (
         <div className={'wizard-step-title'}>
             {title}
@@ -12,4 +12,4 @@ const StepTitle: React.FC<StepTitleProps> = ({title}) => {
     )
 }
 
-export default StepTitle;
+export default HeaderStepTitle;

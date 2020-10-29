@@ -1,6 +1,6 @@
 import React from "react";
-import Step from "./Step";
-import StepSeparator from "./StepSeparator";
+import HeaderStep from "./HeaderStep";
+import HeaderStepSeparator from "./HeaderStepSeparator";
 import {StepProps} from "./types";
 import map from 'lodash/map'
 
@@ -23,22 +23,21 @@ const Header: React.FC<HeaderProps> = ({
                     const isVisited = visitedSteps.includes(stepConfig.id);
                     const isActive = stepConfig.id === activeStepId;
 
-                    const StepView = () => <Step onClick={() => onClick(index)}
-                                                 isActive={isActive}
-                                                 isVisited={isVisited}
-                                                 {...stepConfig}
-                                                 key={index}/>;
+                    const StepView = () => <HeaderStep onClick={() => onClick(index)}
+                                                       isActive={isActive}
+                                                       isVisited={isVisited}
+                                                       {...stepConfig}
+                                                       key={index}/>;
 
-                    return index < steps.length - 1 ? (
-                        <React.Fragment key={index}>
-                            <StepView/>
-                            <StepSeparator isVisited={isVisited}
-                                           isActive={isActive}>
-                            </StepSeparator>
-                        </React.Fragment>
-                    ) : (
-                        <StepView key={index}/>
-                    )
+                    return <React.Fragment key={index}>
+                        <StepView/>
+                        {
+                            index < steps.length - 1 &&
+                            <HeaderStepSeparator isVisited={isVisited}
+                                                 isActive={isActive}>
+                            </HeaderStepSeparator>
+                        }
+                    </React.Fragment>
                 })
             }
         </div>

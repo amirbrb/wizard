@@ -1,14 +1,12 @@
 import React from 'react';
 import Header from "./Header";
-import MainView from "./MainView";
-
 import Footer from "./Footer";
 import {StepProps} from "./types";
 import useWizard from "./useWizard";
 
 type WizardProps = {
     steps: StepProps[],
-    postSubmitView: JSX.Element,
+    postSubmitView: React.ReactNode,
     cancel: () => void,
     submit: () => void,
 }
@@ -42,8 +40,11 @@ const Wizard: React.FC<WizardProps> = ({
                     onClick={stepClick}
                     activeStepId={activeStepId}>
             </Header>
-            <MainView currentView={isWizardSubmitted ? postSubmitView : activeView}>
-            </MainView>
+            <div className={'wizard-main-view'}>
+                {
+                    isWizardSubmitted ? postSubmitView : activeView
+                }
+            </div>
             <Footer isInitialStep={isInitialStep}
                     isLastStep={isFinalStep}
                     isWizardSubmitted={isWizardSubmitted}

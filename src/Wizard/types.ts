@@ -1,20 +1,12 @@
-export interface StepIconProps {
-    icon: string,
-    isVisited: boolean,
-    isActive: boolean,
-}
-
-export interface StepMessageProps {
-    message: string,
-}
+import React from "react";
 
 export interface StepProps {
     id: string,
     text: string,
     icon: string,
     message: string,
-    renderView: () => JSX.Element,
+    renderView: () => React.ReactNode,
     validate: () => boolean,
     isVisible: () => boolean,
-    summaryDisplay: () => JSX.Element,
+    summaryDisplay: () => React.ReactNode,
 }

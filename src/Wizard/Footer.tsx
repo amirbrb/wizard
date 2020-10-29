@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button';
+import classNames from "classnames";
 
 type FooterProps = {
     onNext: () => void,
@@ -22,13 +23,17 @@ const Footer: React.FC<FooterProps> = ({
                                                        canProceed,
                                                        isWizardSubmitted}) => {
 
-    const CancelButton = () => <Button isDisabled={false} onClick={onCancel} className={`btn btn-light wizard-button`}>Cancel</Button>;
-    const BackButton = () => <Button isDisabled={false} onClick={onBack} className={`btn btn-primary wizard-button`}>Back</Button>;
-    const NextButton = () => <Button isDisabled={!canProceed} onClick={onNext} className={`btn btn-primary wizard-button`}>Next</Button>;
-    const SubmitButton = () => <Button isDisabled={isWizardSubmitted} onClick={onSubmit} className={`btn btn-success wizard-button`}>Submit</Button>;
+    const CancelButton = () => <Button isDisabled={false} onClick={onCancel} className={`wizard-button cancel-button`}>Cancel</Button>;
+    const BackButton = () => <Button isDisabled={false} onClick={onBack} className={`wizard-button prev-next-button`}>Back</Button>;
+    const NextButton = () => <Button isDisabled={!canProceed} onClick={onNext} className={`wizard-button prev-next-button`}>Next</Button>;
+    const SubmitButton = () => <Button isDisabled={isWizardSubmitted} onClick={onSubmit} className={`wizard-button submit-button`}>Submit</Button>;
+
+    const className = classNames('wizard-footer',
+        {'submitted': isWizardSubmitted},
+    );
 
     return (
-        <div className={`wizard-footer ${isWizardSubmitted ? 'submitted' : ''}`}>
+        <div className={className}>
             {isInitialStep && !isLastStep && <CancelButton />}
             {!isInitialStep && !isWizardSubmitted && <BackButton />}
             {!isLastStep && <NextButton />}
