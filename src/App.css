@@ -1,0 +1,149 @@
+@import "//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+.wizard-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.wizard-header {
+  display: flex;
+}
+
+.wizard-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3em 1.5em;
+}
+
+.wizard-step-icon {
+  width: 3em;
+  height: 3em;
+  border: .1em solid #6E84A4;
+  color: #6E84A4;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.wizard-step.active .wizard-step-icon {
+  color: white;
+  background: #6E84A4;
+}
+
+.wizard-step.visited .wizard-step-icon {
+  color: white;
+  background: #2d7be5;
+}
+
+.wizard-step-separator {
+  display: flex;
+  align-items: center;
+  height: 0.2em;
+  background: #6E84A4;
+  flex-grow: 1;
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 5em;
+  min-width: 2em;
+}
+
+.wizard-step-separator.active {
+  background: #6E84A4;
+}
+
+.wizard-step-separator.visited {
+  background: #2d7be5;
+}
+
+.step-validation-error {
+  color: red;
+}
+
+.wizard-main-view {
+  display: flex;
+  justify-content: center;
+  height: 30em;
+}
+
+.wizard-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wizard-footer.submitted {
+  justify-content: flex-end;
+}
+
+.wizard-button {
+  margin: 2em;
+  height: 3em;
+  padding: .5em;
+  cursor: pointer;
+  min-width: 5em;
+}
+
+.wizard-button.hidden {
+  display: none;
+}
+
+.wizard-button:disabled {
+  opacity: 50%;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  color: #6E84A4;
+  background: white;
+}
+
+.prev-next-button {
+  color: white;
+  background: #2d7be5;
+}
+
+.submit-button {
+  color: white;
+  background: forestgreen;
+}
+
+.wizard-summary-step {
+  display: flex;
+  margin-top: 1em;
+}
+
+.wizard-summary-step .wizard-step-icon {
+  color: white;
+  background: #6E84A4;
+}
+
+.summary-data-title {
+  color: grey;
+}
+
+.summary-data-data {
+  color: black;
+  font-weight: bold;
+}
+
+.summary-data {
+  margin: 0em 1em;
+}
+
+.summary-step-separator {
+  width: 0.2em;
+  background: #6E84A4;
+  display: flex;
+  flex-grow: 1;
+  height: 2em;
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+img {
+  height: 5em;
+  width: 5em;
+}
